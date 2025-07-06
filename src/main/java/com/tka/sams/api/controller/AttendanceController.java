@@ -36,9 +36,6 @@ public class AttendanceController {
 	@Autowired
 	private SubjectService subjectService;
 
-	@Autowired
-	private StudentService studentService;
-
 	@GetMapping("/get-all-attendance-records")
 	public List<AttendanceRecord> getAllAttendanceRecords() {
 		return attendanceRecordService.getAllAttendanceRecords();

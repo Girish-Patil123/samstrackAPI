@@ -31,29 +31,31 @@ public class UserController {
 	
 	
 // http://localhost:8091/user/login-user
-	@PostMapping("/login-user")
-	public Object loginUser(@RequestBody LoginRequest request) {
-		User user = service.loginUser(request);
-		
-		if(user!=null) {
-			return user;
-		}else {
-			return null;
-		}
-		
-		
-	}
+	
+		@PostMapping("/login-user")
+		public ResponseEntity<?> loginUser(@RequestBody LoginRequest request) {
+		    User user = service.loginUser(request);
 
-	@CrossOrigin(methods = RequestMethod.POST)
-	@PostMapping("/register-user")
-	public ResponseEntity<String> registerUser(@RequestBody User user) {
-		User registerUser = service.registerUser(user);
-		if (registerUser != null) {
-			return new ResponseEntity<String>("Registered", HttpStatus.CREATED);
-		} else {
-			return new ResponseEntity<String>("Something Went Wrong", HttpStatus.OK);
+		    if (user != null) {
+		        return ResponseEntity.ok(user);
+		    } else {
+		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+		    }
 		}
-	}
+
+		
+	
+
+		@CrossOrigin(methods = RequestMethod.POST)
+		@PostMapping("/register-user")
+		public ResponseEntity<String> registerUser(@RequestBody User user) {
+		    User registerUser = service.registerUser(user);
+		    if (registerUser != null) {
+		        return new ResponseEntity<String>("Registered", HttpStatus.CREATED);
+		    } else {
+		        return new ResponseEntity<String>("Something Went Wrong", HttpStatus.OK);
+		    }
+		}
 
 	//localhost:8091/user/get-user-by-username/ram
 	@GetMapping("/get-user-by-username/{username}")
@@ -78,13 +80,13 @@ public class UserController {
 	return service.getAllFaculties();
 	}
 
-	//localhost:8091/user/delete-user-by-username?username=ram
+	
 	
 	@DeleteMapping("/delete-user-by-username")
 	public String deleteUserById(@RequestParam String username) {
 		return service.deleteUserById(username);
 	}
-
+	@CrossOrigin(methods = RequestMethod.PUT)
 	@PutMapping("/update-user")
 	public User updateUser(@RequestBody User user) {
 		return service.updateUser(user);

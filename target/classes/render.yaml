@@ -3,7 +3,8 @@ services:
     name: samstrack-api
     env: java
     buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/samstrack-api-0.0.1-SNAPSHOT.jar"
+    startCommand: "java -jar target/SamsTrack-0.0.1-SNAPSHOT.jar"
     envVars:
       - key: PORT
         value: 8080
+

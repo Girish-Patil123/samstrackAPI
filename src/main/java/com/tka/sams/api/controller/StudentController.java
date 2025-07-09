@@ -18,7 +18,7 @@ import com.tka.sams.api.service.StudentService;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin("https://samstrackattendance.netlify.app")
+
 public class StudentController {
 
 	@Autowired

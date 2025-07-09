@@ -23,7 +23,7 @@ import com.tka.sams.api.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://samstrackattendance.netlify.app")
 public class UserController {
 
 	@Autowired
